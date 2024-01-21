@@ -1,0 +1,8 @@
+﻿using Expense_Management_Base.Response;
+using Expense_Management_Schema.Payments.Requests;
+using Expense_Management_Schema.Payments.Responses;
+using MediatR;
+
+namespace Expense_Management_Business.Cqrs.PaymentCqrs.PaymentCommands;
+
+public record CreatePaymentCommand(PaymentRequest Model) : IRequest<ApiResponse<PaymentResponse>>;
