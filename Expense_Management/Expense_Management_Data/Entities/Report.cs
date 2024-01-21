@@ -29,6 +29,7 @@ public class ReportConfiguration : IEntityTypeConfiguration<Report>
         builder.Property(x => x.ReportID).ValueGeneratedOnAdd();
         builder.Property(x => x.CreatedByUserID).IsRequired(true);
         builder.Property(x => x.RequesterUserID).IsRequired(true);
+        builder.Property(x => x.CategoryId).IsRequired(true);
         builder.Property(x => x.Amount).IsRequired(true).HasPrecision(18, 2);
         builder.Property(x => x.Status).IsRequired(true);
         builder.Property(x => x.Date).IsRequired(true);
