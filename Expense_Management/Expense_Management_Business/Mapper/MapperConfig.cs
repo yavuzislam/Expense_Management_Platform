@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Expense_Management_Base.Enums;
 using Expense_Management_Data.Entities;
 using Expense_Management_Schema.Categories.Requests;
 using Expense_Management_Schema.Categories.Responses;
@@ -25,8 +26,7 @@ public class MapperConfig : Profile
         CreateMap<User, UserResponse>().ForMember(dest => dest.UserFullName,
                 opt => opt.MapFrom(src => src.UserFirstName + " " + src.UserLastName))
             .ForMember(x => x.Role,
-                opt => opt.MapFrom(src => (RoleEnum)src.Role));
-
+                opt => opt.MapFrom(src => (RoleTypes)src.Role));
 
         CreateMap<ExpenseRequest, Expense>();
         CreateMap<Expense, ExpenseResponse>()
@@ -38,18 +38,11 @@ public class MapperConfig : Profile
             .ForMember(x => x.Status,
                 opt => opt.MapFrom(src => (ExpenseStatus)src.Status));
 
-
         CreateMap<CategoryRequest, Category>();
         CreateMap<Category, CategoryResponse>();
 
-
         CreateMap<ReportRequest, Report>();
         CreateMap<Report, ReportResponse>()
-            // .ForMember(dest => dest.CreatedByUserName,
-            //     opt => opt.MapFrom(src =>
-            //         src.CreatedByUser != null
-            //             ? $"{src.CreatedByUser.UserFirstName} {src.CreatedByUser.UserLastName}"
-            //             : null))
             .ForMember(x => x.Status,
                 opt => opt.MapFrom(src => (ExpenseStatus)src.Status))
             .ForMember(x => x.CategoryName,
