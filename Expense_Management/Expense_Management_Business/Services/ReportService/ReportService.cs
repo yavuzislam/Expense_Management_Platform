@@ -13,7 +13,8 @@ public class ReportService : IReportService
         _dbContext = dbContext;
     }
 
-    public async Task<ApiResponse> CreateReportAsync(int createdByUserId, int requesterUserId, int categoryId, decimal amount, int status, DateTime date)
+    public async Task<ApiResponse> CreateReportAsync(int createdByUserId, int requesterUserId, int categoryId,
+        decimal amount, int status, DateTime date)
     {
         var report = new Report
         {
@@ -22,9 +23,9 @@ public class ReportService : IReportService
             CategoryId = categoryId,
             Amount = amount,
             Status = status,
-            Date = DateTime.UtcNow
+            Date = date
         };
-        
+
         await _dbContext.Set<Report>().AddAsync(report);
         await _dbContext.SaveChangesAsync();
         return new ApiResponse("Report created successfully");

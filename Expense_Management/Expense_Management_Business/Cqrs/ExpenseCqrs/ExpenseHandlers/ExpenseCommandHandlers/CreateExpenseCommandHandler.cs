@@ -32,10 +32,9 @@ public class CreateExpenseCommandHandler : IRequestHandler<CreateExpenseCommand,
         var result = await _dbContext.Set<Expense>().AddAsync(expense, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
 
-        BackgroundJob.Schedule(
+        BackgroundJob.Enqueue(
             () => _notificationService.CreateNotificationAsync(expense.UserID,
-                $"An expense claim has been entered by the user: {expense.UserID}"),
-            TimeSpan.FromSeconds(10));
+                $"An expense claim has been entered by the user: {expense.UserID}"));
         var mappedResult = _mapper.Map<ExpenseResponse>(result.Entity);
         return new ApiResponse<ExpenseResponse>(mappedResult);
     }

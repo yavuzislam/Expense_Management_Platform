@@ -47,6 +47,9 @@ public class ApproveExpenseCommandHandler : IRequestHandler<ApproveExpenseComman
             () => _notificationService.CreateNotificationAsync(entity.UserID,
                 "Your expense claim has been approved"));
 
-        return new ApiResponse("Expense approved successfully");
+        return new ApiResponse("Expense approved successfully")
+        {
+            Success = true
+        };
     }
 }

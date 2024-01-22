@@ -32,13 +32,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Expense_Management_Business\Expense_Management_Business.csproj" />
       <ProjectReference Include="..\Expense_Management_Data\Expense_Management_Data.csproj" />
       <ProjectReference Include="..\Expense_Management_Schema\Expense_Management_Schema.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers\" />
     </ItemGroup>
 
 </Project>

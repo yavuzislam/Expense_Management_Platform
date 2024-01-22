@@ -46,6 +46,9 @@ public class RejectExpenseCommandHandler : IRequestHandler<RejectExpenseCommand,
                 $"Your expense claim has been rejected. Reason: {request.Reason}"));
 
         await _dbContext.SaveChangesAsync(cancellationToken);
-        return new ApiResponse("Expense rejected with reason:" + request.Reason);
+        return new ApiResponse("Expense rejected with reason:" + request.Reason)
+        {
+            Success = true
+        };
     }
 }

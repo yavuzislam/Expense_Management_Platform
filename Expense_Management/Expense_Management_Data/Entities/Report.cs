@@ -17,7 +17,7 @@ public class Report
     public bool IsActive { get; set; } 
 
     public virtual User CreatedByUser { get; set; } 
-    public virtual User RequesterUser { get; set; } 
+    // public virtual User RequesterUser { get; set; } 
     public virtual Category Category { get; set; }
 }
 
