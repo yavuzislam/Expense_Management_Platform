@@ -26,11 +26,12 @@ public class GetReportByIdQueryHandler : IRequestHandler<GetReportByIdQuery, Api
         CancellationToken cancellationToken)
     {
         var sql = @"
-        SELECT r.*, u.*, c.*
-        FROM [dbo].[Reports] r
-        INNER JOIN [dbo].[Users] u ON r.CreatedByUserID = u.UserNumber
-        INNER JOIN [dbo].[Categories] c ON r.CategoryId = c.CategoryId
-        WHERE r.ReportID = @ReportID";
+    SELECT r.*, u.*, c.*
+    FROM Reports r
+    INNER JOIN Users u ON r.CreatedByUserID = u.UserNumber
+    INNER JOIN Categories c ON r.CategoryId = c.CategoryId
+    WHERE r.ReportID = @ReportID";
+
 
         using (var connection = _dbContext.Database.GetDbConnection())
         {

@@ -26,13 +26,10 @@ public class
     public async Task<ApiResponse<IEnumerable<PaymentResponse>>> Handle(GetPaymentsByParametersQuery request,
         CancellationToken cancellationToken)
     {
-        var predicate = PredicateBuilder.New<Payment>(true);
-        if (request.Status != 0)
-            predicate.And(x => x.Status == request.Status);
 
         var list = await _dbContext.Set<Payment>()
             .Include(x => x.User)
-            .Where(predicate)
+            .Where(x => x.Status == request.Status)
             .ToListAsync(cancellationToken);
 
         var mappedList = _mapper.Map<IEnumerable<PaymentResponse>>(list);

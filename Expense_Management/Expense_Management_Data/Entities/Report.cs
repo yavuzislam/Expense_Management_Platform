@@ -9,7 +9,7 @@ public class Report
 {
     public int ReportID { get; set; }
     public int CreatedByUserID { get; set; } 
-    public int RequesterUserID { get; set; } 
+    public int? RequesterUserID { get; set; } 
     public int CategoryId { get; set; }
     public decimal Amount { get; set; }
     public int Status { get; set; }
@@ -17,7 +17,6 @@ public class Report
     public bool IsActive { get; set; } 
 
     public virtual User CreatedByUser { get; set; } 
-    // public virtual User RequesterUser { get; set; } 
     public virtual Category Category { get; set; }
 }
 
@@ -28,7 +27,7 @@ public class ReportConfiguration : IEntityTypeConfiguration<Report>
         builder.HasKey(x => x.ReportID);
         builder.Property(x => x.ReportID).ValueGeneratedOnAdd();
         builder.Property(x => x.CreatedByUserID).IsRequired(true);
-        builder.Property(x => x.RequesterUserID).IsRequired(true);
+        builder.Property(x => x.RequesterUserID).IsRequired(false);
         builder.Property(x => x.CategoryId).IsRequired(true);
         builder.Property(x => x.Amount).IsRequired(true).HasPrecision(18, 2);
         builder.Property(x => x.Status).IsRequired(true);

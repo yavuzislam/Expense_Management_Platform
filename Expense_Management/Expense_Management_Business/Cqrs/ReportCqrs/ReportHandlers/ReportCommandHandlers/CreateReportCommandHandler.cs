@@ -28,9 +28,9 @@ public class CreateReportCommandHandler:IRequestHandler<CreateReportCommand, Api
         CancellationToken cancellationToken)
     {
         var sql = @"
-        INSERT INTO [dbo].[Reports] ([Amount], [CategoryId], [CreatedByUserID], [Date], [Status])
-        OUTPUT INSERTED.[ReportID], INSERTED.[IsActive]
-        VALUES (@Amount, @CategoryId, @CreatedByUserID, @Date, @Status)";
+    INSERT INTO Reports (Amount, CategoryId, CreatedByUserID, Date, Status)
+    OUTPUT INSERTED.ReportID, INSERTED.IsActive
+    VALUES (@Amount, @CategoryId, @CreatedByUserID, @Date, @Status)";
 
         var parameters = new DynamicParameters();
         parameters.Add("CreatedByUserID", request.Id);
@@ -42,10 +42,8 @@ public class CreateReportCommandHandler:IRequestHandler<CreateReportCommand, Api
         using (var connection = _dbContext.Database.GetDbConnection())
         {
             await connection.OpenAsync(cancellationToken);
-            // var insertedReports=await connection.ExecuteAsync(sql, parameters);
             var insertedReports = await connection.QueryAsync<Report>(sql, parameters);
             var reportResponse = insertedReports.Select(report => _mapper.Map<ReportResponse>(report)).FirstOrDefault();
-
             return new ApiResponse<ReportResponse>(reportResponse);
         }
     }

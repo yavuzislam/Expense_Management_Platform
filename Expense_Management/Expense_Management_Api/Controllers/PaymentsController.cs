@@ -4,6 +4,7 @@ using Expense_Management_Business.Cqrs.PaymentCqrs.PaymentQueries;
 using Expense_Management_Schema.Payments.Requests;
 using Expense_Management_Schema.Payments.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Expense_Management_Api.Controllers
@@ -20,6 +21,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse<IEnumerable<PaymentResponse>>> GetPayments()
         {
             var operation = new GetAllPaymentsQuery();
@@ -28,6 +30,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpGet("{id}", Name = "Get")]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse<PaymentResponse>> GetPayment(int id)
         {
             var operation = new GetPaymentByIdQuery(id);
@@ -36,6 +39,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpGet("search")]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse<IEnumerable<PaymentResponse>>> GetPaymentByParameters([FromQuery] int status)
         {
             var operation = new GetPaymentsByParametersQuery(status);
@@ -44,6 +48,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse<PaymentResponse>> CreatePayment([FromBody] PaymentRequest payment)
         {
             var operation = new CreatePaymentCommand(payment);
@@ -52,6 +57,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse> UpdatePayment(int id, [FromBody] PaymentRequest payment)
         {
             var operation = new UpdatePaymentCommand(id, payment);
@@ -60,6 +66,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse> RemovePayment(int id)
         {
             var operation = new DeletePaymentCommand(id);

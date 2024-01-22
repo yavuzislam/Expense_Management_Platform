@@ -4,6 +4,7 @@ using Expense_Management_Business.Cqrs.CategoryCqrs.CategoryQueries;
 using Expense_Management_Schema.Categories.Requests;
 using Expense_Management_Schema.Categories.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Expense_Management_Api.Controllers
@@ -20,6 +21,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Personel")]
         public async Task<ApiResponse<IEnumerable<CategoryResponse>>> GetCategorys()
         {
             var operation = new GetAllCategoriesQuery();
@@ -28,6 +30,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetCategory")]
+        [Authorize(Roles = "Admin,Personel")]
         public async Task<ApiResponse<CategoryResponse>> GetCategory(int id)
         {
             var operation = new GetCategoryByIdQuery(id);
@@ -36,6 +39,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse<CategoryResponse>> CreateCategory([FromBody] CategoryRequest Category)
         {
             var operation = new CreateCategoryCommand(Category);
@@ -44,6 +48,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse> UpdateCategory(int id, [FromBody] CategoryRequest Category)
         {
             var operation = new UpdateCategoryCommand(id, Category);
@@ -53,6 +58,7 @@ namespace Expense_Management_Api.Controllers
 
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse> RemoveCategory(int id)
         {
             var operation = new DeleteCategoryCommand(id);

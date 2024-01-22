@@ -4,5 +4,5 @@ namespace Expense_Management_Business.Services.EFTService;
 
 public interface IEFTService
 {
-    Task<ApiResponse> PerformEftAsync(int senderUserId, int receiverUserId, decimal amount, string bankName, string iban);
+    Task<ApiResponse> PerformEftAsync(decimal amount, string bankName, string iban, int paymentId);
 }

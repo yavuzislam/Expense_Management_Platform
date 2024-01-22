@@ -4,6 +4,7 @@ using Expense_Management_Business.Cqrs.EFTDetailCqrs.EFTDetailQueries;
 using Expense_Management_Schema.EFTDetails.Requests;
 using Expense_Management_Schema.EFTDetails.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Expense_Management_Api.Controllers
@@ -20,6 +21,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse<IEnumerable<EFTDetailResponse>>> GetEFTDetails()
         {
             var operation = new GetAllEFTDetailQuery();
@@ -28,6 +30,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetEFTDetail")]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse<EFTDetailResponse>> GetEFTDetail(int id)
         {
             var operation = new GetEFTDetailByIdQuery(id);
@@ -36,6 +39,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse<EFTDetailResponse>> CreateEFTDetail([FromBody] EFTDetailRequest eftDetail)
         {
             var operation = new CreateEFTDetailCommand(eftDetail);
@@ -44,6 +48,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse> UpdateEFTDetail(int id, [FromBody] EFTDetailRequest eftDetail)
         {
             var operation = new UpdateEFTDetailCommand(id, eftDetail);
@@ -52,6 +57,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse> RemoveEFTDetail(int id)
         {
             var operation = new DeleteEFTDetailCommand(id);

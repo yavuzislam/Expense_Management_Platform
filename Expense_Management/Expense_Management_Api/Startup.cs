@@ -6,6 +6,7 @@ using Expense_Management_Api.Middlewares;
 using Expense_Management_Base.Token;
 using Expense_Management_Business.Cqrs.UserCqrs.UserCommands;
 using Expense_Management_Business.Mapper;
+using Expense_Management_Business.Services.EFTService;
 using Expense_Management_Business.Services.NotificationService;
 using Expense_Management_Business.Services.PaymentService;
 using Expense_Management_Business.Services.ReportService;
@@ -129,6 +130,7 @@ public class Startup
         services.AddScoped<INotificationService, NotificationService>();
         services.AddScoped<IPaymentService, PaymentService>();
         services.AddScoped<IReportService, ReportService>();
+        services.AddScoped<IEFTService, EFTService>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

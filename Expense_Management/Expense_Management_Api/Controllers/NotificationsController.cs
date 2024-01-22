@@ -4,6 +4,7 @@ using Expense_Management_Business.Cqrs.NotificationCqrs.NotificationQueries;
 using Expense_Management_Schema.Notifications.Requests;
 using Expense_Management_Schema.Notifications.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Expense_Management_Api.Controllers
@@ -20,6 +21,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Personel")]
         public async Task<ApiResponse<IEnumerable<NotificationResponse>>> GetNotifications()
         {
             var operation = new GetAllNotificationQuery();
@@ -28,6 +30,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpGet("{id}", Name = "GetNotification")]
+        [Authorize(Roles = "Admin,Personel")]
         public async Task<ApiResponse<NotificationResponse>> GetNotification(int id)
         {
             var operation = new GetNotificationByIdQuery(id);
@@ -36,6 +39,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin,Personel")]
         public async Task<ApiResponse<NotificationResponse>> CreateNotification(
             [FromBody] NotificationRequest notification)
         {
@@ -45,6 +49,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin,Personel")]
         public async Task<ApiResponse> UpdateNotification(int id, [FromBody] NotificationRequest notification)
         {
             var operation = new UpdateNotificationCommand(id, notification);
@@ -53,6 +58,7 @@ namespace Expense_Management_Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin,Personel")]
         public async Task<ApiResponse> RemoveNotification(int id)
         {
             var operation = new DeleteNotificationCommand(id);

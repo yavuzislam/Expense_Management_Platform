@@ -41,7 +41,7 @@ namespace Expense_Management_Api.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Personel")]
+        [Authorize(Roles = "Admin")]
         public async Task<ApiResponse<ReportResponse>> CreateReport([FromBody] ReportRequest report)
         {
             var id = User.FindFirst("id")?.Value;

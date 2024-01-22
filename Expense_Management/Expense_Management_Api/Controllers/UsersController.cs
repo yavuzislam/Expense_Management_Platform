@@ -20,7 +20,6 @@ namespace Expense_Management_Api.Controllers
 
         private readonly IDistributedCache _distributedCache;
 
-        // GET: api/Users
         public UsersController(IMediator mediator, IMemoryCache memoryCache, IDistributedCache distributedCache)
         {
             _mediator = mediator;
