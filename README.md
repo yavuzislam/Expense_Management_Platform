@@ -93,7 +93,6 @@ This interface allows field personnel to enter and submit their expenses for app
 
 ### Notifications
 ![Notifications](https://github.com/yavuzislam/Expense_Management_Platform/assets/65170205/3f599057-3d65-4c00-8b80-eb8279c013df)
-Here, users can view notifications related to their expense submissions, such as approval or rejection updates.
 
 ### Payments
 ![Payments](https://github.com/yavuzislam/Expense_Management_Platform/assets/65170205/6514630e-e994-435d-a01e-504c8422d1b9)
