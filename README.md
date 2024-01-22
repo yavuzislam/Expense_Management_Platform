@@ -81,3 +81,42 @@ cd Expense_Management_Api
 dotnet run
 ```
 
+
+## API Endpoint
+**Screenshot of the single API endpoint used in the project:**
+
+Below are some screenshots of the key endpoints and features of the Expense-Payment System, along with brief descriptions of their functionalities:
+
+### Expense Management
+![Expense Management](https://github.com/yavuzislam/Expense_Management_Platform/assets/65170205/f4301be2-11cc-45f7-8669-5d3c77d0cddd)
+This interface allows field personnel to enter and submit their expenses for approval. It provides an overview of all submitted expenses, their statuses, and details.
+
+### Notifications
+![Notifications](https://github.com/yavuzislam/Expense_Management_Platform/assets/65170205/3f599057-3d65-4c00-8b80-eb8279c013df)
+Here, users can view notifications related to their expense submissions, such as approval or rejection updates.
+
+### Payments
+![Payments](https://github.com/yavuzislam/Expense_Management_Platform/assets/65170205/6514630e-e994-435d-a01e-504c8422d1b9)
+This section shows the payment status of approved expenses, enabling users to track the transaction status and history.
+
+### Reports
+![Reports](https://github.com/yavuzislam/Expense_Management_Platform/assets/65170205/780b1c32-ebab-4339-b343-66869200ff12)
+Users can generate and view various expense reports, providing insights into spending patterns and expense management efficiency.
+
+### Token Management
+![Token](https://github.com/yavuzislam/Expense_Management_Platform/assets/65170205/1b2ec542-d371-47ea-8d0f-7fec5c6b6b20)
+This feature deals with the authentication tokens for secure access to the application.
+
+### User Management
+![Users](https://github.com/yavuzislam/Expense_Management_Platform/assets/65170205/0de10f0d-1302-4155-aafb-a805a53c714f)
+Here, administrators can manage user accounts, roles, and permissions within the application.
+
+### Expense Categories
+![Category](https://github.com/yavuzislam/Expense_Management_Platform/assets/65170205/c5b0a321-9c34-42f3-a5f1-4ee8f81eae50)
+This section allows for the categorization of expenses, helping in organizing and reporting expenses more effectively.
+
+### EFT Details
+![EFT Detail](https://github.com/yavuzislam/Expense_Management_Platform/assets/65170205/ad45f5c2-bede-4a4e-b512-85720c19d094)
+Displays the details of Electronic Fund Transfers for approved expense payments.
+
+
